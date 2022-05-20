@@ -1,4 +1,4 @@
-package com.example.androidkotlinfinal
+package com.example.androidkotlinfinal.network
 
 data class User(
     val avatar_url: String,
