@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.androidkotlinfinal.database.Dao.UserDao
 import com.example.androidkotlinfinal.database.entities.User
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract val userDao: UserDao
 
