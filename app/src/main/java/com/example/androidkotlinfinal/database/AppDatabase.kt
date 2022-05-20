@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.androidkotlinfinal.database.Dao.UserDao
-import com.example.androidkotlinfinal.database.entities.User
+import com.example.androidkotlinfinal.database.dao.UserDao
+import com.example.androidkotlinfinal.database.entities.DatabaseUser
 
-@Database(entities = [User::class], version = 2, exportSchema = false)
+@Database(entities = [DatabaseUser::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract val userDao: UserDao
 

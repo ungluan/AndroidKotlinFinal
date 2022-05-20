@@ -1,11 +1,12 @@
 package com.example.androidkotlinfinal.network
 
+import com.example.androidkotlinfinal.network.dto.NetworkUserContainer
+import com.example.androidkotlinfinal.network.models.NetworkUser
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 private const val BASE_URL = " https://api.github.com"
@@ -17,7 +18,7 @@ interface ApiService {
     suspend fun getListUser(
         @Query("since") since: Int,
         @Query("per_page") perPage: Int
-    ) : List<User>
+    ) : NetworkUserContainer
 
 //    @GET("users/{login}")
 //    suspend fun getUser(
@@ -37,11 +38,3 @@ object ApiNetwork {
     }
 }
 
-fun User.asDomain() : com.example.androidkotlinfinal.database.entities.User {
-    return com.example.androidkotlinfinal.database.entities.User(
-        id = id,
-        login = login,
-        htmlUrl = html_url,
-        avatarUrl = avatar_url,
-    )
-}
