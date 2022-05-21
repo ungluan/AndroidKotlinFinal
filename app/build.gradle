@@ -44,6 +44,8 @@ dependencies {
     def retrofit_version = "2.9.0"
     def moshi_version = "1.13.0"
     def coroutine_version = "1.6.1"
+    def glide_version = "4.13.0"
+    def rounded_image_version = "2.3.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -88,6 +90,8 @@ dependencies {
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
     // Glide Library
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
-    kapt 'com.github.bumptech.glide:compiler:4.13.0'
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+    // Rounded Image
+    implementation "com.makeramen:roundedimageview:$rounded_image_version"
 }
