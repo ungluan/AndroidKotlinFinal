@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.androidkotlinfinal.R
 import com.example.androidkotlinfinal.databinding.FragmentHomeBinding
 
 
@@ -23,7 +21,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
 
         binding.apply {
-            viewModel = viewModel
+            viewModel = this@HomeFragment.viewModel
             lifecycleOwner = this@HomeFragment
             recyclerView.adapter = UserListAdapter()
         }

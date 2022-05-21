@@ -16,5 +16,5 @@ interface UserDao {
     suspend fun getUserByLogin(loginValue : String) : DatabaseUser
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertListUser(databaseUsers: List<DatabaseUser>)
+    suspend fun insertListUser(databaseUsers: List<DatabaseUser>)
 }

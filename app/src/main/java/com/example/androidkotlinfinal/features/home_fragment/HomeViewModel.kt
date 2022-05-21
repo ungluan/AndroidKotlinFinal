@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidkotlinfinal.database.AppDatabase
 import com.example.androidkotlinfinal.domain.User
 import com.example.androidkotlinfinal.repositories.UserRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: UserRepository = UserRepository(
@@ -24,7 +26,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun refresherUser(){
         viewModelScope.launch {
-            repository.refreshUsers()
+            withContext(Dispatchers.IO){
+                repository.refreshUsers()
+            }
         }
     }
 

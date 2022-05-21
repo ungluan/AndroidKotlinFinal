@@ -1,5 +1,8 @@
 package com.example.androidkotlinfinal.network.models
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class NetworkUser(
     val avatar_url: String,
     val bio: Any?,

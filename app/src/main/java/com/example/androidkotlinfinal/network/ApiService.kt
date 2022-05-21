@@ -18,7 +18,7 @@ interface ApiService {
     suspend fun getListUser(
         @Query("since") since: Int,
         @Query("per_page") perPage: Int
-    ) : NetworkUserContainer
+    ) : List<NetworkUser>
 
 //    @GET("users/{login}")
 //    suspend fun getUser(

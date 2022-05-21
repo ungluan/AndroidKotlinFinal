@@ -12,6 +12,6 @@ fun NetworkUser.asDatabaseModel(): DatabaseUser = DatabaseUser(id, login, html_u
 
 fun NetworkUser.asDomainModel(): User = User(id, login, avatar_url, html_url)
 
-fun NetworkUserContainer.asDomainModel(): List<User> = users.map { it.asDomainModel() }
+fun List<NetworkUser>.asDomainModel(): List<User> = map { it.asDomainModel() }
 
-fun NetworkUserContainer.asDatabaseModel(): List<DatabaseUser> = users.map { it.asDatabaseModel() }
+fun List<NetworkUser>.asDatabaseModel(): List<DatabaseUser> = map { it.asDatabaseModel() }
