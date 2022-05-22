@@ -32,10 +32,10 @@ class UserDetailViewModel(data: User, application: Application) :
     private fun getUserNetwork(login: String) {
         viewModelScope.launch {
 //            if(_user.value?.name.isNullOrEmpty()){
-            viewModelScope.launch {
+//            viewModelScope.launch {
                 repository.getUserNetwork(login)
                 _showLocation.value = _user.value?.location?.isNotEmpty() ?: false
-            }
+//            }
 //            }
         }
     }
