@@ -1,7 +1,6 @@
 package com.example.androidkotlinfinal.features.user_detail_fragment
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,21 +9,18 @@ import com.example.androidkotlinfinal.database.AppDatabase
 import com.example.androidkotlinfinal.domain.User
 import com.example.androidkotlinfinal.repositories.UserRepository
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 // ViewModelFactory
 class UserDetailViewModel(data: User, application: Application) :
     AndroidViewModel(application) {
     private val repository = UserRepository(AppDatabase.getDatabase(application))
-    private var _user = MutableLiveData<User>(data)
+    private var _user = MutableLiveData(data)
     val user: LiveData<User>
         get() = _user
 
     init {
         getUserNetwork(data.login)
-        _user.value = repository.getUserDatabase(data.login).value
-        Timber.d("USER_STATUS: ${user.value == null}")
-        Log.d("UserDetailViewModel","USER_STATUS: ${_user.value == null}")
+//        _user.value = repository.getUserDatabase(data.login).value
     }
 
 
@@ -45,7 +41,6 @@ class UserDetailViewModel(data: User, application: Application) :
     val showLocation : LiveData<Boolean>
         get() = _showLocation
 
-    private val _showEmail =
-        MutableLiveData(_user.value?.blog)
+    private val _showEmail = MutableLiveData(_user.value?.blog)
 }
 
