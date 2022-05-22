@@ -1,11 +1,10 @@
 package com.example.androidkotlinfinal.features.home_fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.androidkotlinfinal.databinding.FragmentHomeBinding
@@ -28,8 +27,8 @@ class HomeFragment : Fragment() {
         binding.apply {
             viewModel = this@HomeFragment.viewModel
             lifecycleOwner = this@HomeFragment
-            recyclerView.adapter = UserListAdapter(OnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToUserDetailFragment()
+            recyclerView.adapter = UserListAdapter(OnClickListener { user ->
+                val action = HomeFragmentDirections.actionHomeFragmentToUserDetailFragment(user)
                 findNavController().navigate(action)
             })
             // Why setHasFixedSize = true then my RecyclerView is Empty?

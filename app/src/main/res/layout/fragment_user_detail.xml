@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="user"
-            type="com.example.androidkotlinfinal.domain.User" />
+            name="viewModel"
+            type="com.example.androidkotlinfinal.features.user_detail_fragment.UserDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         <!-- TODO: Update blank fragment layout -->
         <TextView
             android:id="@+id/txt_name"
-            android:text="@{user.name}"
+            android:text="@{viewModel.user.name}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -30,7 +30,7 @@
 
         <ImageView
             android:id="@+id/img_avatar"
-            app:imageUrl="@{user.avatarUrl}"
+            app:imageUrl="@{viewModel.user.avatarUrl}"
             android:layout_width="match_parent"
             android:layout_height="280dp"
             tools:src="@color/teal_200"
