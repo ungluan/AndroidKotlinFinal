@@ -21,23 +21,26 @@ data class DatabaseUser(
     val createdAt: String?,
     val email: String?,
     val followers: Int?,
-    val bio: String?
+    val bio: String?,
+    val location: String?
 )
 
+fun DatabaseUser.asDomainModel(): User =
+    User(
+        id,
+        login,
+        avatarUrl,
+        htmlUrl,
+        name,
+        blog,
+        company,
+        createdAt,
+        email,
+        followers,
+        bio,
+        location
+    )
+
 fun List<DatabaseUser>.asDomainModel(): List<User> {
-    return map {
-        User(
-            it.id,
-            it.login,
-            it.avatarUrl,
-            it.htmlUrl,
-            it.name,
-            it.blog,
-            it.company,
-            it.createdAt,
-            it.email,
-            it.followers,
-            it.bio
-        )
-    }
+    return map { userDatabase -> userDatabase.asDomainModel() }
 }

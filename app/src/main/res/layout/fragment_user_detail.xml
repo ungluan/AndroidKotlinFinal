@@ -7,6 +7,7 @@
         <variable
             name="viewModel"
             type="com.example.androidkotlinfinal.features.user_detail_fragment.UserDetailViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +15,6 @@
         android:layout_height="match_parent"
         tools:context=".features.user_detail_fragment.UserDetailFragment">
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
             android:id="@+id/txt_name"
             android:text="@{viewModel.user.name}"
@@ -31,6 +31,7 @@
         <ImageView
             android:id="@+id/img_avatar"
             app:imageUrl="@{viewModel.user.avatarUrl}"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="280dp"
             tools:src="@color/teal_200"
@@ -58,11 +59,13 @@
 
         <TextView
             android:id="@+id/txt_follower"
+            android:text="@{@string/followers(viewModel.user.followers)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_marginStart="16dp"
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintLeft_toRightOf="@id/img_github"
             app:layout_constraintRight_toRightOf="@id/box"
@@ -73,6 +76,8 @@
 
         <TextView
             android:id="@+id/textView"
+            app:formattedDate="@{viewModel.user.createdAt}"
+            android:layout_marginStart="16dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -85,6 +90,7 @@
 
         <TextView
             android:id="@+id/txt_bio"
+            android:text="@{viewModel.user.bio}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -96,6 +102,8 @@
 
         <TextView
             android:id="@+id/txt_location"
+            android:visibility="@{viewModel.showLocation == true ? View.VISIBLE : View.GONE}"
+            app:text="@{viewModel.user.location}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
@@ -110,6 +118,7 @@
 
         <TextView
             android:id="@+id/txt_company"
+            android:text="@{@string/company(viewModel.user.company)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -123,6 +132,7 @@
 
         <TextView
             android:id="@+id/txt_email"
+            android:text="@{@string/email(viewModel.user.email)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -136,6 +146,7 @@
 
         <TextView
             android:id="@+id/txt_blog"
+            android:text="@{@string/blog(viewModel.user.blog)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -149,6 +160,7 @@
 
         <TextView
             android:id="@+id/txt_github"
+            android:text="@{@string/github(viewModel.user.htmlUrl)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"

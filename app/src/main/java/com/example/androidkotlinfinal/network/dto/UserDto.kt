@@ -19,7 +19,8 @@ fun NetworkUser.asDatabaseModel(): DatabaseUser = DatabaseUser(
     created_at,
     email,
     followers,
-    bio
+    bio,
+    location
 )
 
 fun NetworkUser.asDomainModel(): User = User(
@@ -33,7 +34,8 @@ fun NetworkUser.asDomainModel(): User = User(
     created_at,
     email,
     followers,
-    bio
+    bio,
+    location
 )
 
 fun List<NetworkUser>.asDomainModel(): List<User> = map { it.asDomainModel() }

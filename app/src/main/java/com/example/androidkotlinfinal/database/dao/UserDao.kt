@@ -13,7 +13,7 @@ interface UserDao {
     fun getUsers() : LiveData<List<DatabaseUser>>
 
     @Query("Select * from user where login = :loginValue")
-    suspend fun getUserByLogin(loginValue : String) : DatabaseUser
+    fun getUserByLogin(loginValue : String) : LiveData<DatabaseUser>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertListUser(databaseUsers: List<DatabaseUser>)

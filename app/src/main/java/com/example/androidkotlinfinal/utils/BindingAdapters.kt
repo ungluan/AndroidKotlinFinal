@@ -1,6 +1,7 @@
 package com.example.androidkotlinfinal.utils
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -37,4 +38,17 @@ fun ImageView.setImageUrl(imgUrl: String?){
                 .error(R.drawable.ic_broken_image)
         ).into(this)
     }
+}
+@BindingAdapter("formattedDate")
+fun TextView.setFormattedText(date: String?){
+    date?.let {
+        text = context.getString(R.string.created_at,date.formatDate())
+    }
+}
+@BindingAdapter("textWithDefault","stringId")
+fun TextView.setTextWithDefault(value: String?, stringId : Int?){
+    text = if(stringId == null){
+        value ?: "Unknown"
+    }
+    else context.getString(stringId,value ?: "Unknown")
 }

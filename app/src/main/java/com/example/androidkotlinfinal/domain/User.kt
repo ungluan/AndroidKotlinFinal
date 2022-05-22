@@ -15,5 +15,6 @@ data class User(
     val createdAt: String?,
     val email: String?,
     val followers: Int?,
-    val bio: String?
+    val bio: String?,
+    val location: String?
 ) : Parcelable

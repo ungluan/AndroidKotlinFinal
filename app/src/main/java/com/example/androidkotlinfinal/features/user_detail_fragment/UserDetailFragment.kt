@@ -23,7 +23,7 @@ class UserDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentUserDetailBinding.inflate(inflater,container,false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
