@@ -5,11 +5,11 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class NetworkUser(
     val avatar_url: String,
-    val bio: Any?,
+    val bio: String?,
     val blog: String?,
     val company: String?,
     val created_at: String?,
-    val email: Any?,
+    val email: String?,
     val events_url: String,
     val followers: Int?,
     val followers_url: String,

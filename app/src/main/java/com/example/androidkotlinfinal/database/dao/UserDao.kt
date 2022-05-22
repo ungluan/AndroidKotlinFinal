@@ -17,4 +17,7 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertListUser(databaseUsers: List<DatabaseUser>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUser(user: DatabaseUser)
 }

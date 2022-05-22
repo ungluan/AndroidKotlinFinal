@@ -18,5 +18,9 @@
         android:id="@+id/userDetailFragment"
         android:name="com.example.androidkotlinfinal.features.user_detail_fragment.UserDetailFragment"
         android:label="fragment_user_detail"
-        tools:layout="@layout/fragment_user_detail" />
+        tools:layout="@layout/fragment_user_detail" >
+        <argument
+            android:name="user"
+            app:argType="com.example.androidkotlinfinal.domain.User" />
+    </fragment>
 </navigation>

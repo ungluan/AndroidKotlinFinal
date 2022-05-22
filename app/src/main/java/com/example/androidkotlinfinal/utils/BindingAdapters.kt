@@ -1,5 +1,6 @@
 package com.example.androidkotlinfinal.utils
 
+import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,16 @@ fun RecyclerView.setListDataUser(users: List<User>?) {
 
 @BindingAdapter("imageUrl")
 fun RoundedImageView.setImageUrl(imgUrl: String?) {
+    imgUrl?.let {
+        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        Glide.with(this.context).load(imgUri).apply(
+            RequestOptions().placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_broken_image)
+        ).into(this)
+    }
+}
+@BindingAdapter("imageUrl")
+fun ImageView.setImageUrl(imgUrl: String?){
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(this.context).load(imgUri).apply(
