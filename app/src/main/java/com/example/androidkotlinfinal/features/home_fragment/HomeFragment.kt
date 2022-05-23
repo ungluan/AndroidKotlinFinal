@@ -25,15 +25,14 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater)
         viewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
 
-        binding.apply {
-            viewModel = this@HomeFragment.viewModel
-            lifecycleOwner = this@HomeFragment
-            recyclerView.adapter = UserListAdapter(OnClickListener { user ->
-                navigateToUserDetailFragment(user)
-            })
-            // Why setHasFixedSize = true then my RecyclerView is Empty?
+        binding.viewModel = this.viewModel
+        binding.lifecycleOwner = this
+        binding.recyclerView.adapter = UserListAdapter(OnClickListener { user ->
+            navigateToUserDetailFragment(user)
+        })
+        // Why setHasFixedSize = true then my RecyclerView is Empty?
 //            recyclerView.setHasFixedSize(true)
-        }
+
         return binding.root
     }
 

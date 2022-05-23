@@ -45,10 +45,3 @@ fun TextView.setFormattedText(date: String?){
         text = context.getString(R.string.created_at,date.formatDate())
     }
 }
-@BindingAdapter("textWithDefault","stringId")
-fun TextView.setTextWithDefault(value: String?, stringId : Int?){
-    text = if(stringId == null){
-        value ?: "Unknown"
-    }
-    else context.getString(stringId,value ?: "Unknown")
-}

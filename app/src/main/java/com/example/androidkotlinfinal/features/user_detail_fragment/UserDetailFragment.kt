@@ -42,19 +42,18 @@ class UserDetailFragment : Fragment() {
         }
 
         binding.txtGithub.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            viewModel.user.value?.htmlUrl?.let { url ->
-                intent.data = Uri.parse(url)
-            }
-            startActivity(intent)
+            browerUrl(viewModel.user.value?.htmlUrl)
         }
         binding.txtBlog.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            viewModel.user.value?.blog?.let { url ->
-                intent.data = Uri.parse(url)
-            }
-            startActivity(intent)
+            browerUrl(viewModel.user.value?.blog)
         }
     }
 
+    private fun browerUrl(url: String?) {
+        url?.let {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
+        }
+    }
 }
