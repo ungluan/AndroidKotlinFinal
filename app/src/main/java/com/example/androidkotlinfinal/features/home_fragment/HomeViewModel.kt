@@ -33,10 +33,17 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         _navigationToDetailUser.value = false
     }
 
-    private fun refresherUser(){
+    private val _isCompletedRefresh = MutableLiveData<Boolean>()
+    val isCompletedRefresh: LiveData<Boolean>
+        get() = _isCompletedRefresh
+
+    fun refresherUser(){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 repository.refreshUsers()
+                withContext(Dispatchers.Main){
+                    _isCompletedRefresh.value = true
+                }
             }
         }
     }
