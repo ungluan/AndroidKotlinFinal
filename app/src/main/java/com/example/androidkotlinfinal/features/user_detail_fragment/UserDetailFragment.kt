@@ -27,6 +27,7 @@ class UserDetailFragment : Fragment() {
         binding = FragmentUserDetailBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
         return binding.root
     }
 
@@ -55,4 +56,5 @@ class UserDetailFragment : Fragment() {
             startActivity(intent)
         }
     }
+
 }
