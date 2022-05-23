@@ -22,3 +22,9 @@ USE: BuildConfig.ACCESS_TOKEN -> This property is genreated as Constant
 
 HOW TO ADD HEADERINTERCEPTOR
 
+=======================================
+QUESTION:
+1. recyclerView.setHasFixedSize(true). Why setHasFixedSize = true then my RecyclerView is Empty? What is it's function?
+2. binding.executePendingBindings(). Why is it impotant?
+=> because it forces the data binding to execute immediately, which allows the RecyclerView to make the correct view size measurements.
+            
