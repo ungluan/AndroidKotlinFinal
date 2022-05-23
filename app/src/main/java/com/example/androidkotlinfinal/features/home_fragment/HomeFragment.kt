@@ -8,10 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.androidkotlinfinal.databinding.FragmentHomeBinding
+import com.example.androidkotlinfinal.domain.User
 
 /***
- - Tránh dùng constraint layout vs item của recycler view
- - Bởi vì: ConstraintLayout sẽ phải tính toán lại rất nhiều dựa trên các Constraint -> Ngốn CPU
+- Tránh dùng constraint layout vs item của recycler view
+- Bởi vì: ConstraintLayout sẽ phải tính toán lại rất nhiều dựa trên các Constraint -> Ngốn CPU
  ***/
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -28,8 +29,7 @@ class HomeFragment : Fragment() {
             viewModel = this@HomeFragment.viewModel
             lifecycleOwner = this@HomeFragment
             recyclerView.adapter = UserListAdapter(OnClickListener { user ->
-                val action = HomeFragmentDirections.actionHomeFragmentToUserDetailFragment(user)
-                findNavController().navigate(action)
+                navigateToUserDetailFragment(user)
             })
             // Why setHasFixedSize = true then my RecyclerView is Empty?
 //            recyclerView.setHasFixedSize(true)
@@ -44,8 +44,13 @@ class HomeFragment : Fragment() {
             viewModel.refresherUser()
         }
 
-        viewModel.isCompletedRefresh.observe(viewLifecycleOwner){ completed ->
-            if(completed) binding.swipeRefresh.isRefreshing = false
+        viewModel.isCompletedRefresh.observe(viewLifecycleOwner) { completed ->
+            if (completed) binding.swipeRefresh.isRefreshing = false
         }
+    }
+
+    private fun navigateToUserDetailFragment(user: User) {
+        val action = HomeFragmentDirections.actionHomeFragmentToUserDetailFragment(user)
+        findNavController().navigate(action)
     }
 }

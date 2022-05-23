@@ -13,17 +13,17 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/baseMediumMargin"
         android:layout_width="match_parent"
         android:layout_height="256dp"
         app:cardCornerRadius="16dp"
-        android:padding="16dp"
+        android:padding="@dimen/mediumPadding"
         android:onClick="@{() -> onClickListener.onClick(user)}">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp">
+            android:padding="@dimen/mediumPadding">
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/image"
@@ -48,9 +48,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:text="@{user.login}"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.SubTitle1"
+                android:gravity="end"
                 tools:text="UngLuan" />
         </RelativeLayout>
 
