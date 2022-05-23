@@ -36,6 +36,7 @@ object ApiNetwork {
     private val client = OkHttpClient.Builder().addInterceptor {
         HeaderInterceptor().intercept(it)
     }.build()
+
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)

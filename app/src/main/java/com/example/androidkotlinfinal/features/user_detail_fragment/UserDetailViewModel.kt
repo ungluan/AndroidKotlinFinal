@@ -9,6 +9,7 @@ import com.example.androidkotlinfinal.database.AppDatabase
 import com.example.androidkotlinfinal.domain.User
 import com.example.androidkotlinfinal.repositories.UserRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 // ViewModelFactory
 class UserDetailViewModel(data: User, application: Application) :
@@ -19,7 +20,9 @@ class UserDetailViewModel(data: User, application: Application) :
         get() = _user
 
     init {
-        getUserNetwork(data.login)
+        runBlocking {
+            getUserNetwork(data.login)
+        }
 //        _user.value = repository.getUserDatabase(data.login).value
     }
 
