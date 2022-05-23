@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.androidkotlinfinal.database.entities.DatabaseUser
+import kotlinx.coroutines.Deferred
 
 @Dao
 interface UserDao {
@@ -13,7 +14,7 @@ interface UserDao {
     fun getUsers() : LiveData<List<DatabaseUser>>
 
     @Query("Select * from user where login = :loginValue")
-    fun getUserByLogin(loginValue : String) : LiveData<DatabaseUser>
+    suspend fun getUserByLogin(loginValue : String) : DatabaseUser
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertListUser(databaseUsers: List<DatabaseUser>)

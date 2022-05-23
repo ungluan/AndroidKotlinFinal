@@ -1,6 +1,8 @@
 package com.example.androidkotlinfinal.features.user_detail_fragment
 
 import android.app.Application
+import android.util.Log
+import androidx.annotation.MainThread
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,42 +10,64 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidkotlinfinal.database.AppDatabase
 import com.example.androidkotlinfinal.domain.User
 import com.example.androidkotlinfinal.repositories.UserRepository
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import timber.log.Timber
+import java.time.DateTimeException
+import java.util.*
 
 // ViewModelFactory
-class UserDetailViewModel(data: User, application: Application) :
+class UserDetailViewModel(val data: User, application: Application) :
     AndroidViewModel(application) {
     private val repository = UserRepository(AppDatabase.getDatabase(application))
-    private var _user = MutableLiveData(data)
+
+
+    private var _user = MutableLiveData<User>()
     val user: LiveData<User>
         get() = _user
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    private val _isSuccess = MutableLiveData<Boolean>()
+    val isSuccess: LiveData<Boolean>
+        get() = _isSuccess
+
     init {
-        runBlocking {
-            getUserNetwork(data.login)
-        }
-//        _user.value = repository.getUserDatabase(data.login).value
+        setup()
     }
 
-
-
-    private fun getUserNetwork(login: String) {
+    private fun setup(){
+        Timber.d("Current Thread At: ${Calendar.getInstance().time} ,${Thread.currentThread().name}")
         viewModelScope.launch {
-//            if(_user.value?.name.isNullOrEmpty()){
-//            viewModelScope.launch {
-                repository.getUserNetwork(login)
-                _showLocation.value = _user.value?.location?.isNotEmpty() ?: false
-//            }
-//            }
+            withContext(Dispatchers.IO){
+                if( data.name == null ) {
+                    Timber.d("Call network: ${data.name}")
+                    repository.getUserNetwork(data.login)
+                }else{
+                    Timber.d("Don't call network")
+                }
+                val userDatabase = repository.getUserDatabase(data.login)
+                withContext(Dispatchers.Main){
+                    _user.value = userDatabase
+                    _isSuccess.value = true
+                }
+            }
         }
     }
-    // Có data, lúc đầu chưa có -> Cần phải đợi api -> Sau khi có api nó vẫn chưa thay đổi
-    private val _showLocation =
-        MutableLiveData(_user.value?.location?.isNotEmpty() ?: false)
-    val showLocation : LiveData<Boolean>
-        get() = _showLocation
-
-    private val _showEmail = MutableLiveData(_user.value?.blog)
+//    private suspend fun getUserDatabase(){
+//        Timber.d("Start GetUser At: ${Calendar.getInstance().time} ,${Thread.currentThread().name}")
+//        withContext(Dispatchers.IO){
+//            val userDatabase = repository.getUserDatabase(data.login)
+//
+//        }
+//        withContext(Dispatchers.Main){
+//            _user.postValue()
+//            Timber.d("GetUser: ${data.login} User: ${_user.value}")
+//            Timber.d("Finish GetUser At: ${Calendar.getInstance().time} ,${Thread.currentThread().name}")
+//        }
+//    }
 }
 
+/***
+ * Khi call api , and write down database Strategy Replace sẽ xóa record cũ và thêm mới
+ * Lý do tại sao call được API và write down database mà nó không cập nhật lên UI
+ * 
+ * ***/
