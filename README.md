@@ -18,6 +18,13 @@ HOW TO HINE ACCESS_TOKEN / API_KEY ....
 6. Rebuild your's project to Android update property ACCESS_TOKEN in BuildConfig Class
 USE: BuildConfig.ACCESS_TOKEN -> This property is genreated as Constant
 
+NOTICE: WHEN IT FINISHED AND YOU WANT SWITCH BRANCH. GIT WILL DISPLAY ERROR:
+"error: Your local changes to the following files would be overwritten by checkout:
+        gradle.properties"
+SOLVE: 
+STEP1: git stash push --include-untracked. <--------- IT WILL REMOVE ALL LOCAL CHANGE
+STEP2:(OPTION) git stash drop <---------------------- IT WILL DROP THAT STASH 
+
 ======================================
 
 HOW TO ADD HEADERINTERCEPTOR
