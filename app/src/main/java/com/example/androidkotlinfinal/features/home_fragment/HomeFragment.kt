@@ -39,5 +39,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.refresherUser()
+        }
+
+        viewModel.isCompletedRefresh.observe(viewLifecycleOwner){ completed ->
+            if(completed) binding.swipeRefresh.isRefreshing = false
+        }
     }
 }
