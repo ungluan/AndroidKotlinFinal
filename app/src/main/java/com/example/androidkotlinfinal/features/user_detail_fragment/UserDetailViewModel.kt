@@ -39,10 +39,7 @@ class UserDetailViewModel(val data: User, application: Application) :
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 if( data.name == null ) {
-                    Timber.d("Call network: ${data.name}")
                     repository.getUserNetwork(data.login)
-                }else{
-                    Timber.d("Don't call network")
                 }
                 val userDatabase = repository.getUserDatabase(data.login)
                 withContext(Dispatchers.Main){

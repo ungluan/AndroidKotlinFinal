@@ -47,7 +47,4 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
-
-    // Vấn đề đang gặp phải là xử lý logic của User như thế nào đây?
-    // Khi User chưa có đầy đủ thông tin thì?
 }

@@ -3,8 +3,6 @@ package com.example.androidkotlinfinal.utils
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class Utils {
-}
 
 fun String.formatDate(): String {
     return try{
