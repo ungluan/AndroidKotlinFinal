@@ -8,9 +8,35 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class NetworkUserContainer(val users: List<NetworkUser>)
 
-fun NetworkUser.asDatabaseModel(): DatabaseUser = DatabaseUser(id, login,  avatar_url, html_url)
+fun NetworkUser.asDatabaseModel(): DatabaseUser = DatabaseUser(
+    id,
+    login,
+    avatar_url,
+    html_url,
+    name,
+    blog,
+    company,
+    created_at,
+    email,
+    followers,
+    bio,
+    location
+)
 
-fun NetworkUser.asDomainModel(): User = User(id, login, avatar_url, html_url)
+fun NetworkUser.asDomainModel(): User = User(
+    id,
+    login,
+    avatar_url,
+    html_url,
+    name,
+    blog,
+    company,
+    created_at,
+    email,
+    followers,
+    bio,
+    location
+)
 
 fun List<NetworkUser>.asDomainModel(): List<User> = map { it.asDomainModel() }
 

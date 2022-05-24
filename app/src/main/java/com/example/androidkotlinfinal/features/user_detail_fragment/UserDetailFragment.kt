@@ -1,21 +1,60 @@
 package com.example.androidkotlinfinal.features.user_detail_fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.androidkotlinfinal.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.androidkotlinfinal.databinding.FragmentUserDetailBinding
 
 class UserDetailFragment : Fragment() {
+    private lateinit var binding: FragmentUserDetailBinding
+    private val viewModel by lazy {
+        val application = requireActivity().application
+        val user = UserDetailFragmentArgs.fromBundle(requireArguments()).user
+        val viewModelFactory = UserDetailViewModelFactory(user, application)
+        ViewModelProvider(this, viewModelFactory)[UserDetailViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_detail, container, false)
+        binding = FragmentUserDetailBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.isSuccess.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                binding.overlayWhite.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
+        binding.txtGithub.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            viewModel.user.value?.htmlUrl?.let { url ->
+                intent.data = Uri.parse(url)
+            }
+            startActivity(intent)
+        }
+        binding.txtBlog.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            viewModel.user.value?.blog?.let { url ->
+                intent.data = Uri.parse(url)
+            }
+            startActivity(intent)
+        }
+    }
 
 }
