@@ -48,6 +48,7 @@ dependencies {
     def coroutine_version = "1.6.1"
     def glide_version = "4.13.0"
     def rounded_image_version = "2.3.0"
+    def paging_version = "3.1.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -96,4 +97,8 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide_version"
     // Rounded Image
     implementation "com.makeramen:roundedimageview:$rounded_image_version"
+    // Paging
+    implementation("androidx.paging:paging-runtime:$paging_version")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha14")
+
 }
