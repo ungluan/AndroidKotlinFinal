@@ -3,6 +3,7 @@ package com.example.androidkotlinfinal.features.home_fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ import com.example.androidkotlinfinal.domain.User
 import timber.log.Timber
 
 
-class UserListAdapter(private val onClickListener: OnClickListener) : ListAdapter<User, UserListAdapter.ViewHolder>(DiffCallback()) {
+class UserListAdapter(private val onClickListener: OnClickListener) : PagingDataAdapter<User, UserListAdapter.ViewHolder>(DiffCallback()) {
     class ViewHolder(val binding: UserItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User){
             binding.user = user
@@ -28,7 +29,7 @@ class UserListAdapter(private val onClickListener: OnClickListener) : ListAdapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = getItem(position)
-        holder.bind(user)
+        holder.bind(user!!)
         holder.binding.root.setOnClickListener {
             onClickListener.onClick(user)
         }

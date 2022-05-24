@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:listDataUser="@{viewModel.listUser}"
                 tools:listitem="@layout/user_item" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

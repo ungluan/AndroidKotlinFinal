@@ -2,6 +2,7 @@ package com.example.androidkotlinfinal
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.ktx.BuildConfig
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.findNavController
