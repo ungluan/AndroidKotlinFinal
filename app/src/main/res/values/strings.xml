@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AndroidKotlinFinal</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="followers">%d Followers</string>
+    <string name="company">Company: %s</string>
+    <string name="email">Email: %s</string>
+    <string name="blog">My Blog: %s</string>
+    <string name="github">Github: %s</string>
+    <string name="created_at">Since %s</string>
+</resources>
