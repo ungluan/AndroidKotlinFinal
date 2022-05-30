@@ -19,7 +19,7 @@ import timber.log.Timber
 import java.util.*
 import kotlin.system.measureTimeMillis
 
-private const val ITEMS_PER_PAGE = 30
+private const val ITEMS_PER_PAGE = 10
 
 class UserRepository(private val database: AppDatabase) {
 
@@ -108,5 +108,9 @@ class UserRepository(private val database: AppDatabase) {
             id = database.userDao.getLastId()
         }
         return id
+    }
+
+    fun deleteUsers() {
+        database.userDao.deleteUsers()
     }
 }

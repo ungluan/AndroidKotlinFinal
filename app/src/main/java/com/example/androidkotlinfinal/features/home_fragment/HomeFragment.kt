@@ -53,13 +53,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.swipeRefresh.setOnRefreshListener {
-//            viewModel.refresherUser()
-//        }
+        binding.swipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                viewModel.deleteUsers()
 
-//        viewModel.isCompletedRefresh.observe(viewLifecycleOwner) { completed ->
-//            if (completed) binding.swipeRefresh.isRefreshing = false
-//        }
+            }
+        }
+
+        viewModel.isCompletedRefresh.observe(viewLifecycleOwner) { completed ->
+            if (completed) binding.swipeRefresh.isRefreshing = false
+        }
     }
 
     private fun navigateToUserDetailFragment(user: User) {

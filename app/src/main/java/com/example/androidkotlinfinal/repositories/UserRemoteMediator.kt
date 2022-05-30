@@ -27,7 +27,7 @@ class UserRemoteMediator(
             Timber.d("Last id: $lastId")
             userRepository.refreshUsersPaging(lastId, state.config.pageSize)
             val isEnd = userRepository.getAfterUser(lastId) == null
-            Timber.d("isTheEnd: $lastId")
+            Timber.d("isEnd: $isEnd")
             MediatorResult.Success(endOfPaginationReached = isEnd)
         } catch (exception: IOException) {
             MediatorResult.Error(exception)

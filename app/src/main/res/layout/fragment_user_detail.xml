@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.androidkotlinfinal.features.user_detail_fragment.UserDetailViewModel" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,181 +17,182 @@
         android:layout_height="match_parent"
         tools:context=".features.user_detail_fragment.UserDetailFragment">
 
-            <TextView
-                android:id="@+id/txt_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/baseMediumMargin"
-                android:text="@{viewModel.user.name}"
-                android:textAppearance="@style/TextAppearance.Title"
-                app:layout_constraintBottom_toTopOf="@id/txt_name"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Ung Nguyen Truong Luan"/>
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/baseMediumMargin"
+            android:text="@{viewModel.user.name}"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintBottom_toTopOf="@id/txt_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Ung Nguyen Truong Luan" />
 
-            <ImageView
-                android:id="@+id/img_avatar"
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="@dimen/baseMediumMargin"
-                app:imageUrl="@{viewModel.user.avatarUrl}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_name"
-                tools:src="@color/teal_200" />
+        <ImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginTop="@dimen/baseMediumMargin"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{viewModel.user.avatarUrl}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_name"
+            tools:src="@color/teal_200" />
 
-            <TextView
-                android:id="@+id/box"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:background="#CAC2C2"
-                app:layout_constraintBottom_toBottomOf="@id/img_avatar"
-                app:layout_constraintLeft_toLeftOf="parent" />
+        <TextView
+            android:id="@+id/box"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="#CAC2C2"
+            app:layout_constraintBottom_toBottomOf="@id/img_avatar"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
-            <ImageView
-                android:id="@+id/img_github"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_margin="@dimen/baseMediumMargin"
-                android:src="@drawable/ic_github"
-                app:layout_constraintBottom_toBottomOf="@id/box"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/box" />
+        <ImageView
+            android:id="@+id/img_github"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="@dimen/baseMediumMargin"
+            android:src="@drawable/ic_github"
+            app:layout_constraintBottom_toBottomOf="@id/box"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/box" />
 
-            <TextView
-                android:id="@+id/txt_follower"
-                android:visibility="@{viewModel.user.followers != null ? View.VISIBLE : View.GONE}"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/baseMediumMargin"
-                android:text="@{@string/followers(viewModel.user.followers)}"
-                android:textAppearance="@style/TextAppearance.SubTitle1"
-                app:layout_constraintBottom_toTopOf="@+id/textView"
-                app:layout_constraintLeft_toRightOf="@id/img_github"
-                app:layout_constraintRight_toRightOf="@id/box"
-                app:layout_constraintTop_toBottomOf="@+id/img_avatar"
-                app:layout_constraintTop_toTopOf="@id/box"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="767 Follower" />
+        <TextView
+            android:id="@+id/txt_follower"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/baseMediumMargin"
+            android:text="@{@string/followers(viewModel.user.followers)}"
+            android:textAppearance="@style/TextAppearance.SubTitle1"
+            android:visibility="@{viewModel.user.followers != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintLeft_toRightOf="@id/img_github"
+            app:layout_constraintRight_toRightOf="@id/box"
+            app:layout_constraintTop_toBottomOf="@+id/img_avatar"
+            app:layout_constraintTop_toTopOf="@id/box"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="767 Follower" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/baseMediumMargin"
-                android:textAppearance="@style/TextAppearance.SubTitle2"
-                app:formattedDate="@{viewModel.user.createdAt}"
-                app:layout_constraintBottom_toBottomOf="@+id/img_avatar"
-                app:layout_constraintLeft_toRightOf="@id/img_github"
-                app:layout_constraintRight_toRightOf="@id/box"
-                app:layout_constraintTop_toBottomOf="@+id/txt_follower"
-                tools:text="Since Sep 6, 2013" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/baseMediumMargin"
+            android:textAppearance="@style/TextAppearance.SubTitle2"
+            app:formattedDate="@{viewModel.user.createdAt}"
+            app:layout_constraintBottom_toBottomOf="@+id/img_avatar"
+            app:layout_constraintLeft_toRightOf="@id/img_github"
+            app:layout_constraintRight_toRightOf="@id/box"
+            app:layout_constraintTop_toBottomOf="@+id/txt_follower"
+            tools:text="Since Sep 6, 2013" />
 
-            <TextView
-                android:id="@+id/txt_bio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/baseMediumMargin"
-                android:text="@{viewModel.user.bio}"
-                android:textAppearance="@style/TextAppearance.normalText"
-                android:visibility="@{viewModel.user.bio != null ? View.VISIBLE : View.GONE}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/box"
-                tools:text="Hello! My name is Ung Nguyen Truong Luan. I am a mobile developer at Hitachi Vantara Viet Nam." />
+        <TextView
+            android:id="@+id/txt_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/baseMediumMargin"
+            android:text="@{viewModel.user.bio}"
+            android:textAppearance="@style/TextAppearance.normalText"
+            android:visibility="@{viewModel.user.bio != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/box"
+            tools:text="Hello! My name is Ung Nguyen Truong Luan. I am a mobile developer at Hitachi Vantara Viet Nam." />
 
-            <TextView
-                android:id="@+id/txt_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/baseMediumMargin"
-                android:layout_marginTop="@dimen/baseSmallMargin"
-                android:background="@color/white"
-                android:padding="@dimen/smallPadding"
-                android:textColor="@color/black"
-                android:textAppearance="@style/TextAppearance.normalText"
-                android:visibility="@{viewModel.user.location != null ? View.VISIBLE : View.GONE}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/img_avatar"
-                app:text="@{viewModel.user.location}"
-                tools:text="HoChiMinh, VietNam" />
+        <TextView
+            android:id="@+id/txt_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/baseMediumMargin"
+            android:layout_marginTop="@dimen/baseSmallMargin"
+            android:background="@color/white"
+            android:padding="@dimen/smallPadding"
+            android:textAppearance="@style/TextAppearance.normalText"
+            android:textColor="@color/black"
+            android:visibility="@{viewModel.user.location != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_avatar"
+            app:text="@{viewModel.user.location}"
+            tools:text="HoChiMinh, VietNam" />
 
-            <TextView
-                android:id="@+id/txt_company"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/baseMediumMargin"
-                android:layout_marginTop="@dimen/baseSmallMargin"
-                android:layout_marginRight="@dimen/baseMediumMargin"
-                android:text="@{@string/company(viewModel.user.company)}"
-                android:textAppearance="@style/TextAppearance.normalText"
-                android:visibility="@{viewModel.user.company != null ? View.VISIBLE : View.GONE}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_bio"
-                tools:text="Company: Google Inc" />
+        <TextView
+            android:id="@+id/txt_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/baseMediumMargin"
+            android:layout_marginTop="@dimen/baseSmallMargin"
+            android:layout_marginRight="@dimen/baseMediumMargin"
+            android:text="@{@string/company(viewModel.user.company)}"
+            android:textAppearance="@style/TextAppearance.normalText"
+            android:visibility="@{viewModel.user.company != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_bio"
+            tools:text="Company: Google Inc" />
 
-            <TextView
-                android:id="@+id/txt_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/baseMediumMargin"
-                android:layout_marginTop="@dimen/baseSmallMargin"
-                android:layout_marginRight="@dimen/baseMediumMargin"
-                android:text="@{@string/email(viewModel.user.email)}"
-                android:visibility="@{viewModel.user.email != null ? View.VISIBLE : View.GONE}"
-                android:textAppearance="@style/TextAppearance.normalText"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_company"
-                tools:text="Email: truongluan8102000@gmail.com" />
+        <TextView
+            android:id="@+id/txt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/baseMediumMargin"
+            android:layout_marginTop="@dimen/baseSmallMargin"
+            android:layout_marginRight="@dimen/baseMediumMargin"
+            android:text="@{@string/email(viewModel.user.email)}"
+            android:textAppearance="@style/TextAppearance.normalText"
+            android:visibility="@{viewModel.user.email != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_company"
+            tools:text="Email: truongluan8102000@gmail.com" />
 
-            <TextView
-                android:id="@+id/txt_blog"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/baseMediumMargin"
-                android:layout_marginTop="@dimen/baseSmallMargin"
-                android:layout_marginRight="@dimen/baseMediumMargin"
-                android:text="@{@string/blog(viewModel.user.blog)}"
-                android:textColor="@android:color/holo_blue_light"
-                android:textAppearance="@style/TextAppearance.normalText"
-                android:visibility="@{viewModel.user.blog != null ? View.VISIBLE : View.GONE}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_email"
-                tools:text="My Blog: truongluan8102000@gmail.com" />
+        <TextView
+            android:id="@+id/txt_blog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/baseMediumMargin"
+            android:layout_marginTop="@dimen/baseSmallMargin"
+            android:layout_marginRight="@dimen/baseMediumMargin"
+            android:text="@{@string/blog(viewModel.user.blog)}"
+            android:textAppearance="@style/TextAppearance.normalText"
+            android:textColor="@android:color/holo_blue_light"
+            android:visibility="@{ (viewModel.user.blog == null || viewModel.user.blog.isEmpty()) ? View.GONE : View.VISIBLE  }"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_email"
+            tools:text="My Blog: truongluan8102000@gmail.com" />
 
-            <TextView
-                android:id="@+id/txt_github"
-                android:textColor="@android:color/holo_blue_light"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/baseMediumMargin"
-                android:layout_marginTop="@dimen/baseSmallMargin"
-                android:layout_marginRight="@dimen/baseMediumMargin"
-                android:text="@{@string/github(viewModel.user.htmlUrl)}"
-                android:textAppearance="@style/TextAppearance.normalText"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_blog"
-                tools:text="Github: https://github/ungluan" />
+        <TextView
+            android:id="@+id/txt_github"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/baseMediumMargin"
+            android:layout_marginTop="@dimen/baseSmallMargin"
+            android:layout_marginRight="@dimen/baseMediumMargin"
+            android:text="@{@string/github(viewModel.user.htmlUrl)}"
+            android:textAppearance="@style/TextAppearance.normalText"
+            android:textColor="@android:color/holo_blue_light"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_blog"
+            tools:text="Github: https://github/ungluan" />
 
-            <TextView
-                android:id="@+id/overlay_white"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white" />
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:indeterminateTint="@color/purple_700"/>
+        <TextView
+            android:id="@+id/overlay_white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/purple_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

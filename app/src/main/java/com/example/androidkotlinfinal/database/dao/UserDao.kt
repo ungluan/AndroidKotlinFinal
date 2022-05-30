@@ -28,4 +28,7 @@ interface UserDao {
 
     @Query("select max(id) from user")
     fun getLastId(): Int
+
+    @Query("Delete from user")
+    fun deleteUsers()
 }

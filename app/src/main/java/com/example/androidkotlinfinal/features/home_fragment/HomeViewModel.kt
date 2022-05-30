@@ -56,4 +56,12 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     fun  fetchUsers(): Flow<PagingData<DatabaseUser>> {
         return repository.fetchUsers().map { it }.cachedIn(viewModelScope)
     }
+    suspend fun deleteUsers(){
+        withContext(Dispatchers.Default){
+            repository.deleteUsers()
+            withContext(Dispatchers.Main){
+                _isCompletedRefresh.value = true
+            }
+        }
+    }
 }
