@@ -25,4 +25,7 @@ interface UserDao {
 
     @Query("Select * from user")
     fun getUserForPagingSource(): PagingSource<Int,DatabaseUser>
+
+    @Query("select max(id) from user")
+    fun getLastId(): Int
 }

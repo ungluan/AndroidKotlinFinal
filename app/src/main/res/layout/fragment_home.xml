@@ -13,20 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".features.home_fragment.HomeFragment">
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_refresh"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/user_item" />
+<!--        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--            android:id="@+id/swipe_refresh"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:listDataUser="@{viewModel.listUser}"
-                tools:listitem="@layout/user_item" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+<!--            -->
+<!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
     </FrameLayout>
 </layout>
+<!--    app:listDataUser="@{viewModel.listUser}"-->

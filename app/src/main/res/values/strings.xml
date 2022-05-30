@@ -7,4 +7,5 @@
     <string name="blog">My Blog: %s</string>
     <string name="github">Github: %s</string>
     <string name="created_at">Since %s</string>
+    <string name="text_retry">Retry</string>
 </resources>

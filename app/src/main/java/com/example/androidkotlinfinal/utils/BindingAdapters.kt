@@ -12,12 +12,12 @@ import com.example.androidkotlinfinal.domain.User
 import com.example.androidkotlinfinal.features.home_fragment.UserListAdapter
 import com.makeramen.roundedimageview.RoundedImageView
 
-@BindingAdapter("listDataUser")
-fun RecyclerView.setListDataUser(users: List<User>?) {
-    users?.let {
-        (adapter as UserListAdapter).submitList(users)
-    }
-}
+//@BindingAdapter("listDataUser")
+//fun RecyclerView.setListDataUser(users: List<User>?) {
+//    users?.let {
+//        (adapter as UserListAdapter).submitList(users)
+//    }
+//}
 
 @BindingAdapter("imageUrl")
 fun RoundedImageView.setImageUrl(imgUrl: String?) {
